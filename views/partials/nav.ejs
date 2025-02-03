@@ -1,0 +1,36 @@
+<nav>
+    <a href="/">Body Builder</a>
+    <div id="muscle-navs">
+        <ul>
+            <a data-value="pectorals"><li>Pectorals</li></a>
+            <a data-value="biceps"><li>Biceps</li></a>
+            <a data-value="delts"><li>Delts</li></a>
+            <a data-value="forearms"><li>Forearms</li></a>
+            <a data-value="traps"><li>Traps</li></a>
+            <a data-value="abs"><li>Abs</li></a>
+            <a data-value="quads"><li>Quads</li></a>
+            <a data-value="adductors"><li>Adductors</li></a>
+            <a data-value="abductors"><li>Abductors</li></a>
+            <a data-value="calves"><li>Calves</li></a>
+        </ul>
+    </div>
+    <div id="menu-icon" onclick="toggleNav()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</nav>
+
+<!-- Toggle the nav for muscle groups -->
+<script>
+    function toggleNav() {
+        var x = document.getElementById("muscle-navs");
+        let bars = document.querySelectorAll(".bar");
+
+        x.classList.toggle("active-nav");
+        
+        bars[0].classList.toggle("bar-transition-1");
+        bars[1].classList.toggle("bar-transition-2");
+        bars[2].classList.toggle("bar-transition-3");
+    }
+</script>

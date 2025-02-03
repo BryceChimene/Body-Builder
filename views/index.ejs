@@ -8,17 +8,23 @@
 </head>
 <body>
 
+    <!-- Header Section -->
+    <section class="nav-container">
+        <%- include("./partials/nav.ejs") %>
+    </section>
+
     <!-- SVG interative muscle diagram -->
-    <div class="diagram-container">
+    <section class="diagram-container">
         <%- include("./partials/diagram_svg.ejs") %>
-    </div>
+    </section>
 
     <!-- List all exercises for targeted muscle-group -->
-    <div class="exercises-container">
+    <section class="exercises-container">
         <%- include("./partials/workout_cards.ejs") %>
-    </div>
+    </section>
 
     <script src="/js/script.js"></script>
+
     <!-- Change color of active muscle-group -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -26,10 +32,14 @@
     
             if (targetMuscle) {
                 const muscleGroup = document.querySelector(`.muscle-group[data-value="${targetMuscle}"]`);
+                const navMuscleGroup = document.querySelector(`a[data-value="${targetMuscle}"]`);
                 if (muscleGroup) {
                     muscleGroup.querySelectorAll("path").forEach(path => {
                         path.style.fill = "rgb(0, 255, 0)";
                     });
+                    navMuscleGroup.querySelectorAll("li").forEach(li => {
+                        li.style.color = "rgb(0, 255, 0)";
+                    })
                 }
             }
         });
