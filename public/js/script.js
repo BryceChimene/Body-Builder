@@ -1,3 +1,5 @@
+// Script to pass the data-value of clicked muscle-group to the server
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('g').forEach((group) => {
       group.addEventListener('click', () => {

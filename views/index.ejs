@@ -7,37 +7,33 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+
+    <!-- SVG interative muscle diagram -->
     <div class="diagram-container">
         <%- include("./partials/diagram_svg.ejs") %>
     </div>
+
+    <!-- List all exercises for targeted muscle-group -->
     <div class="exercises-container">
-        <h2>Exercises For <%= target ? target : "Select a Muscle Group" %></h2>
-        <div class="cards-container">
-            <% if (workouts && workouts.length > 0) { %>
-                <% workouts.forEach(workout => { %>
-                    <div class="exercise-card">
-                        <div>
-                            <h3><%= workout.name %></h3>
-                            <h4><%= workout.target %></h4>
-                            <% workout.secondaryMuscles.forEach(muscle => { %>
-                                <h5><%= muscle %></h5>
-                            <% }); %>
-                        </div>
-                        <div>
-                            <img src="<%= workout.gifUrl %>" alt="">
-                            <ul>
-                                <% workout.instructions.forEach(instruction => { %>
-                                    <li><%= instruction %></li>
-                                <% }); %>
-                            </ul>
-                        </div>
-                    </div>
-                <% }); %>
-            <% } else { %>
-                <p>No workouts available for the selected target.</p>
-            <% } %>
-        </div>
+        <%- include("./partials/workout_cards.ejs") %>
     </div>
+
     <script src="/js/script.js"></script>
+    <!-- Change color of active muscle-group -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const targetMuscle = "<%= target %>"; // Get target from server-side
+    
+            if (targetMuscle) {
+                const muscleGroup = document.querySelector(`.muscle-group[data-value="${targetMuscle}"]`);
+                if (muscleGroup) {
+                    muscleGroup.querySelectorAll("path").forEach(path => {
+                        path.style.fill = "rgb(0, 255, 0)";
+                    });
+                }
+            }
+        });
+    </script>
+    
 </body>
 </html>
